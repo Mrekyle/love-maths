@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let button of buttons) { // iterates through the array in a modern syntax.
         button.addEventListener('click', function() { // When any button is clicked it will execute the function in the current scope
             if (this.getAttribute('data-type') === 'submit') { // If the button with the same datatype is clicked it will activate the alert
-                alert("You clicked the submit button");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute('data-type'); // If another button is clicked it will alert the user what button has been
                     // alert(`You Clicked ${gameType}`); Clicked and display what button was clicked
@@ -45,6 +45,23 @@ function runGame(gameType) {
  * and calculates the correct answer
  */
 function checkAnswer () {
+    let userAnswer = parseInt(document.getElementById('answer-box').value); // Value is used as we need a number not a string. In conjunction with parseInt 
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0]; // Checks if the users answer and the calculated answer match and are correct
+
+    if(isCorrect) {
+        alert('Congratulations you got the correct answer'); // Alerts if the user gave the correct answer
+    } else {
+        alert(`Awww.... Too bad, the correct answer is ${calculatedAnswer[0]}`); // Alerts if the wrong answer given and given the correct answer
+    }
+
+    runGame(calculatedAnswer[1]);
+}
+
+/**
+ * Checks and compares the answer of the two generated operands to the users input from the dom
+ */
+function calculateCorrectAnswer () {
     let operand1 = parseInt(document.getElementById('operand1').innerText); // Getting the operand number and placing them in the variable.
     let operand2 = parseInt(document.getElementById('operand2').innerText); // parseInt ensures that it is a number not a string
     let operator = document.getElementById('operator').innerText; // As default js returns a sting from the DOM
@@ -53,12 +70,8 @@ function checkAnswer () {
         return [operand1 + operand2, '+']; // As long as the operator is addition it returns the sum of both operands
     } else {
         alert(`Unimplemented operator ${operator}`);
-        throw(`Unimplemented operator ${operatir}. Aborting!`);
+        throw(`Unimplemented operator ${operator}. Aborting!`);
     }
-}
-
-function calculateCorrectAnswer () {
-
 }
 
 function incrementScore () {
