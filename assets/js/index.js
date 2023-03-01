@@ -17,8 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+// A descriptive docstring above the function gives a basic description when the function has been called
+
+/**
+ * The main game 'loop', called when the script is loaded
+ * and once the users answer has been processed
+ */
 function runGame() {
 
+    // Generates a random number between 1 and 25
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 }
 
 function checkAnswer () {
