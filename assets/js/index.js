@@ -67,7 +67,7 @@ function calculateCorrectAnswer () {
     let operator = document.getElementById('operator').innerText; // As default js returns a sting from the DOM
 
     if(operator === '+') {
-        return [operand1 + operand2, '+']; // As long as the operator is addition it returns the sum of both operands
+        return [operand1 + operand2, 'addition']; // As long as the operator is addition it returns the sum of both operands
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw(`Unimplemented operator ${operator}. Aborting!`);
